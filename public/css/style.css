@@ -1,0 +1,36 @@
+html, body{
+	height: 100%;
+}
+
+#header{
+	height: 20%;
+	width: 100%;
+}
+
+h3{
+	color: white;
+	margin-left: 10%;
+}
+
+#body{
+	height: 60%;
+	width: 100%;
+}
+
+#signupform{
+	width: 70%;
+}
+
+#loginform{
+	width: 70%;
+}
+
+#footer{
+	height: 20%;
+	width: 100%;
+}
+
+h4{
+	text-align: center;
+	color: white;
+}
