@@ -119,6 +119,7 @@ app.get('/getall', function(req, res){
 	var query = {username: username};
 	client.connect(url, function(err, db){
 		db.collection("interviews").find(query).toArray(function(err, data){
+			console.log(data);
 			res.send(data);
 			db.close();
 		});

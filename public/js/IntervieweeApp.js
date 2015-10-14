@@ -1,21 +1,6 @@
 console.log("into the IntervieweeApp");
 
 angular.module("IntervieweeApp", ["CustomFilter"])
-/*	.filter("Search", function(){
-		return function(interviews, target){
-			console.log(target);
-			var result = [];
-			for(var i = 0; i < target.length; i++){
-				if(interviews.company == target || 
-					interviews.position == target || 
-					interviews.date == target ||
-					target == null){
-					result.push(interviews[i]);
-				}
-			}
-			return result;
-		};
-	})*/
 	.controller("MainCtrl", function($scope, $http, $filter){
 		$scope.username = username;
 		GetAll();
@@ -41,13 +26,11 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 			addOneData.status = 0;
 			addOneData.key = $scope.username + $scope.company + $scope.position;
 
-			//console.log(addOneData);
 			$http.post('/addone', addOneData)
 				.success(function(data){
 					console.log("add one success");
 					GetAll();
 					GetNumbers();
-					$scope.username = "";
 					$scope.company = "";
 					$scope.position = "";
 					$scope.date = "";
@@ -113,7 +96,7 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 		function GetAll(){
 			$http.get('/getall').success(function(data){
 				$scope.interviews = data;
-				//console.log($scope.interviews);
+				console.log("retrieve data from db: " + $scope.interviews);
 			});
 		}
 
