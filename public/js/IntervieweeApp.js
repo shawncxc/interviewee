@@ -5,6 +5,7 @@ angular.module("IntervieweeApp", [])
 	.controller("MainCtrl", function($scope, $http, $filter, addOneUrl){
 		$scope.username = username;
 		GetAll();
+		GetNumbers();
 
 		var selectedCategory = null;
 		$scope.selectCategory = function(num){
@@ -28,6 +29,11 @@ angular.module("IntervieweeApp", [])
 				.success(function(data){
 					console.log("add one success");
 					GetAll();
+					GetNumbers();
+					$scope.username = "";
+					$scope.company = "";
+					$scope.position = "";
+					$scope.date = "";
 				})
 				.error(function(data){
 					console.log("add one fail");
@@ -39,6 +45,7 @@ angular.module("IntervieweeApp", [])
 				.success(function(){
 					console.log("delete success");
 					GetAll();
+					GetNumbers();
 				})
 				.error(function(){
 					console.log("delete fail");
@@ -50,6 +57,7 @@ angular.module("IntervieweeApp", [])
 				.success(function(){
 					console.log("interviewing one success");
 					GetAll();
+					GetNumbers();
 				})
 				.error(function(){
 					console.log("interviewing one fail");
@@ -61,6 +69,7 @@ angular.module("IntervieweeApp", [])
 				.success(function(){
 					console.log("Offered one success");
 					GetAll();
+					GetNumbers();
 				})
 				.error(function(){
 					console.log("Offered one fail");
@@ -72,6 +81,7 @@ angular.module("IntervieweeApp", [])
 				.success(function(){
 					console.log("Rejected one success");
 					GetAll();
+					GetNumbers();
 				})
 				.error(function(){
 					console.log("Rejected one fail");
@@ -87,6 +97,24 @@ angular.module("IntervieweeApp", [])
 			$http.get('/getall').success(function(data){
 				$scope.interviews = data;
 				console.log($scope.interviews);
+			});
+		}
+
+		function GetNumbers(){
+			$http.get('/getnumsall').success(function(data){
+				$scope.all = data.all;
+			});
+			$http.get('/getnumswaiting').success(function(data){
+				$scope.waiting = data.waiting;
+			});
+			$http.get('/getnumsinterviewing').success(function(data){
+				$scope.interviewing = data.interviewing;
+			});
+			$http.get('/getnumsoffered').success(function(data){
+				$scope.offered = data.offered;
+			});
+			$http.get('/getnumsrejected').success(function(data){
+				$scope.rejected = data.rejected;
 			});
 		}
 	});

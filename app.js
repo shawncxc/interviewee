@@ -125,6 +125,71 @@ app.get('/getall', function(req, res){
 	});
 });
 
+app.get('/getnumsall', function(req, res){
+	var username = req.session.username;
+	var all = 0;
+	client.connect(url, function(err, db){
+		db.collection("interviews").find({username: username}).toArray(
+			function(err, data){
+			all = data.length;
+			res.send({all: all});
+			db.close();
+		});
+	});
+});
+
+app.get('/getnumswaiting', function(req, res){
+	var username = req.session.username;
+	var waiting = 0;
+	client.connect(url, function(err, db){
+		db.collection("interviews").find({username: username, status: 0}).toArray(
+			function(err, data){
+			waiting = data.length;
+			res.send({waiting: waiting});
+			db.close();
+		});
+	});
+});
+
+app.get('/getnumsinterviewing', function(req, res){
+	var username = req.session.username;
+	var interviewing = 0;
+	client.connect(url, function(err, db){
+		db.collection("interviews").find({username: username, status: 1}).toArray(
+			function(err, data){
+			interviewing = data.length;
+			res.send({interviewing: interviewing});
+			db.close();
+		});
+	});
+});
+
+app.get('/getnumsoffered', function(req, res){
+	var username = req.session.username;
+	var offered = 0;
+	client.connect(url, function(err, db){
+		db.collection("interviews").find({username: username, status: 2}).toArray(
+			function(err, data){
+			offered = data.length;
+			res.send({offered: offered});
+			db.close();
+		});
+	});
+});
+
+app.get('/getnumsrejected', function(req, res){
+	var username = req.session.username;
+	var rejected = 0;
+	client.connect(url, function(err, db){
+		db.collection("interviews").find({username: username, status: 3}).toArray(
+			function(err, data){
+			rejected = data.length;
+			res.send({rejected: rejected});
+			db.close();
+		});
+	});
+});
+
 //-------------------------------- port ---------------------------------
 app.listen(app.get('port'), function(){
 	console.log("listening on port " + app.get('port'));

@@ -32,14 +32,19 @@ html(lang="en", ng-app="IntervieweeApp")
           ul(class="nav nav-pills nav-stacked")
             li(class="active")
               a(ng-click="showAll()", href="") ALL
+                span(class="badge") {{all}}
             li 
               a(ng-click="selectCategory(0)", href="") Waiting
+                span(class="badge") {{waiting}}
             li
               a(ng-click="selectCategory(1)", href="") Interviewing
+                span(class="badge") {{interviewing}}
             li
               a(ng-click="selectCategory(2)", href="") Offered
+                span(class="badge") {{offered}}
             li
               a(ng-click="selectCategory(3)", href="") Rejected
+                span(class="badge") {{rejected}}
       div(class="col-xs-8 col-sm-8 col-md-8 col-lg-8")
         table(class="table table-hover")
           tr(ng-repeat="interview in interviews | filter:categoryFilter") 
