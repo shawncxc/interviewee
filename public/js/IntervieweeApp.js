@@ -26,6 +26,50 @@ angular.module("IntervieweeApp", [])
 				});
 		};
 
+		$scope.Delete = function(key){
+			$http.post('/deleteone', {key: key})
+				.success(function(){
+					console.log("delete success");
+					GetAll();
+				})
+				.error(function(){
+					console.log("delete fail");
+				});
+		};
+
+		$scope.Interviewing = function(key){
+			$http.post('/interviewingone', {key: key})
+				.success(function(){
+					console.log("interviewing one success");
+					GetAll();
+				})
+				.error(function(){
+					console.log("interviewing one fail");
+				});
+		};
+
+		$scope.Offered = function(key){
+			$http.post('/offeredone', {key: key})
+				.success(function(){
+					console.log("Offered one success");
+					GetAll();
+				})
+				.error(function(){
+					console.log("Offered one fail");
+				});
+		};
+
+		$scope.Rejected = function(key){
+			$http.post('/rejectedone', {key: key})
+				.success(function(){
+					console.log("Rejected one success");
+					GetAll();
+				})
+				.error(function(){
+					console.log("Rejected one fail");
+				});
+		};
+
 		function GetAll(){
 			$http.get('/getall').success(function(data){
 				$scope.interviews = data;

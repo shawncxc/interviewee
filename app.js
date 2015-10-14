@@ -71,6 +71,49 @@ app.post('/addone', function(req, res){
 	});
 });
 
+app.post('/deleteone', function(req, res){
+	client.connect(url, function(err, db){
+		db.collection("interviews").remove(req.body, function(err, res){
+			assert.equal(null, err);
+			db.close();
+		});
+		res.sendStatus(200);
+	});
+});
+
+app.post('/interviewingone', function(req, res){
+	client.connect(url, function(err, db){
+		db.collection("interviews").update(req.body, {$set: {status: 1}},
+			function(err, res){
+				assert.equal(null, err);
+				db.close();
+		});
+		res.sendStatus(200);
+	});
+});
+
+app.post('/offeredone', function(req, res){
+	client.connect(url, function(err, db){
+		db.collection("interviews").update(req.body, {$set: {status: 2}},
+			function(err, res){
+				assert.equal(null, err);
+				db.close();
+		});
+		res.sendStatus(200);
+	});
+});
+
+app.post('/rejectedone', function(req, res){
+	client.connect(url, function(err, db){
+		db.collection("interviews").update(req.body, {$set: {status: 3}},
+			function(err, res){
+				assert.equal(null, err);
+				db.close();
+		});
+		res.sendStatus(200);
+	});
+});
+
 app.get('/getall', function(req, res){
 	var username = req.session.username;
 	var query = {username: username};

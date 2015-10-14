@@ -39,11 +39,24 @@ html(lang="en", ng-app="IntervieweeApp")
             li
               a(href="#") Rejected
       div(class="col-xs-8 col-sm-8 col-md-8 col-lg-8")
-        div(ng-repeat="interview in interviews", class="well") 
-          span {{interview.company}}
-          span {{interview.position}}
-          span {{interview.date}}
-
+        table(class="table table-hover")
+          tr(ng-repeat="interview in interviews") 
+            td {{interview.company}}  
+            td {{interview.position}}  
+            td {{interview.date}}  
+            td
+              div(class="dropdown") 
+                button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status  
+                  span(class="caret")
+                ul(class="dropdown-menu", role="menu")
+                  li
+                    a(ng-click="Interviewing(interview.key)", href="#") Interviewing
+                  li
+                    a(ng-click="Offered(interview.key)", href="#") offered
+                  li
+                    a(ng-click="Rejected(interview.key)", href="#") rejected
+            td 
+              button(ng-click="Delete(interview.key)", class="btn btn-danger") Delete
     div(class="row", id="footer")   
       //- nav(class="navbar navbar-inverse navbar-fixed-bottom")
       //-   h4 Presented by 
