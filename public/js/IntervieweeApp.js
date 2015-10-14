@@ -17,6 +17,21 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 			return selectedCategory == num ? "active" : "";
 		};
 
+		$scope.getStatusColor = function(num){
+			if(num == 0) return "progress-bar progress-bar-warning";
+			else if(num == 1) return "progress-bar progress-bar-info";
+			else if(num == 2) return "progress-bar progress-bar-success";
+			else if(num == 3) return "progress-bar progress-bar-danger";
+		}
+
+/*		$scope.getPercent = function(num){
+			console.log($scope.waitingPercent);
+			if(num == 0) return $scope.waitingPercent;
+			else if(num == 1) return "width: " + $scope.interviewingPercent + "%;"; 
+			else if(num == 2) return "width: " + $scope.offeredPercent + "%;";
+			else return "width: " + $scope.rejectedPercent + "%;";
+		}*/
+
 		$scope.addOne = function(){
 			var addOneData = {};
 			addOneData.username = $scope.username;
@@ -96,7 +111,16 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 		function GetAll(){
 			$http.get('/getall').success(function(data){
 				$scope.interviews = data;
-				console.log("retrieve data from db: " + $scope.interviews);
+				for(var i = 0; i < data.length; i++){
+					if(data[i].status == 0)
+						$scope.interviews[i].statusStr = "Waiting";
+					if(data[i].status == 1)
+						$scope.interviews[i].statusStr = "Interviewing";
+					if(data[i].status == 2)
+						$scope.interviews[i].statusStr = "Offered";
+					if(data[i].status == 3)
+						$scope.interviews[i].statusStr = "Rejected";
+				}
 			});
 		}
 
@@ -106,15 +130,19 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 			});
 			$http.get('/getnumswaiting').success(function(data){
 				$scope.waiting = data.waiting;
+				$scope.waitingPercent = $scope.waiting / $scope.all * 100;
 			});
 			$http.get('/getnumsinterviewing').success(function(data){
 				$scope.interviewing = data.interviewing;
+				$scope.interviewingPercent = $scope.interviewing / $scope.all * 100;
 			});
 			$http.get('/getnumsoffered').success(function(data){
 				$scope.offered = data.offered;
+				$scope.offeredPercent = $scope.offered / $scope.all * 100;
 			});
 			$http.get('/getnumsrejected').success(function(data){
 				$scope.rejected = data.rejected;
+				$scope.rejectedPercent = $scope.rejected / $scope.all * 100;
 			});
 		}
 	});

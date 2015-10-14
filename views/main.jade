@@ -27,12 +27,6 @@ html(lang="en", ng-app="IntervieweeApp")
               input#date(ng-model="date", type="date", name="date", class="form-control", placeholder="Date", aria-describedby="sizing-addon1")
           button(ng-click="addOne()", class="btn btn-success btn-block") Add An Interview
 
-        div#search
-          div(class="input-group input-group")
-              span(class="input-group-addon", id="sizing-addon1") 
-                span(class="glyphicon glyphicon-search")
-              input#company(ng-model="reqtarget", type="text", class="form-control", placeholder="Search...", aria-describedby="sizing-addon1")
-
         div#tabs
           ul(class="nav nav-pills nav-stacked")
             li(ng-class="getCategoryClass(-1)")
@@ -52,7 +46,27 @@ html(lang="en", ng-app="IntervieweeApp")
                 span(class="badge") {{rejected}}
       div(class="col-xs-9 col-sm-9 col-md-9 col-lg-9")
         div(class="panel panel-default")
-          div(class="panel-heading") Interview List
+          div(class="panel-heading")
+            h1 Interview List
+          button(class="btn btn-success")
+
+          div(class="panel-body")
+            h2 Brief Summary
+            div#briefSummary(class="progress")
+              div(class="progress-bar progress-bar-warning", role="progressbar", ng-style="{'width': waitingPercent+'%'}")
+                | Waiting {{waitingPercent}}%
+              div(class="progress-bar progress-bar-info", role="progressbar", ng-style="{'width': interviewingPercent+'%'}")
+                | Interviewing {{interviewingPercent}}%
+              div(class="progress-bar progress-bar-danger", role="progressbar", ng-style="{'width': rejectedPercent+'%'}")
+                | Rejected {{rejectedPercent}}%
+              div(class="progress-bar progress-bar-success", role="progressbar", ng-style="{'width': offeredPercent+'%'}")
+                | Offered {{offeredPercent}}%
+
+            div#search
+              div(class="input-group input-group")
+                  span(class="input-group-addon", id="sizing-addon1") 
+                    span(class="glyphicon glyphicon-search")
+                  input#company(ng-model="reqtarget", type="text", class="form-control", placeholder="Search...", aria-describedby="sizing-addon1")
 
           table(class="table table-hover")
             thead
@@ -61,14 +75,21 @@ html(lang="en", ng-app="IntervieweeApp")
                 th Position
                 th Date
                 th Status
-                th Remove
+                th Action
+                th Delete
             tr(ng-repeat="interview in interviews | filter:categoryFilter | Search:reqtarget") 
               td {{interview.company}}  
               td {{interview.position}}  
               td {{interview.date | date: format: longDate}}  
               td
+                  //- div(class="progress") 
+                    //- ng-class="getStatusColor(interview.status)", 
+                    //- div(aria-valuenow="100", aria-valuemin="0", aria-valuemax="100", style="width: 100%") 
+                  {{interview.statusStr}}
+  
+              td  
                 div(class="dropdown") 
-                  button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status  
+                  button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status 
                     span(class="caret")
                   ul(class="dropdown-menu", role="menu")
                     li
@@ -77,8 +98,10 @@ html(lang="en", ng-app="IntervieweeApp")
                       a(ng-click="Offered(interview.key)", href="") offered
                     li
                       a(ng-click="Rejected(interview.key)", href="") rejected
+                
               td 
-                button(ng-click="Delete(interview.key)", class="btn btn-danger") Delete
+                button(ng-click="Delete(interview.key)", class="btn btn-danger") 
+                  span(class="glyphicon glyphicon-remove")
     div(class="row", id="footer")   
       //- nav(class="navbar navbar-inverse navbar-fixed-bottom")
       //-   h4 Presented by 
