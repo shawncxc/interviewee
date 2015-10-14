@@ -40,10 +40,9 @@ app.post('/signup', function(req, res){
 			assert.equal(1, res.insertedCount);
 			req.session.username = req.body.username;
 			db.close();
+			res.render(app.get('views') + '/main.jade', {username: req.session.username});
 		});
 	});
-
-	res.render(app.get('views') + '/main.jade');
 });
 
 app.post('/main', function(req, res){
@@ -51,14 +50,36 @@ app.post('/main', function(req, res){
 		db.collection("users").find(req.body).toArray(function(err, data){
 			if(data.length === 1){
 				req.session.username = data[0].username;
+				db.close();
+				res.render(app.get('views') + '/main.jade', {username: req.session.username});
 			}
 			else{
 				res.send("No such Username or Password");	
 			}
 		});
 	});
+});
 
-	res.render(app.get('views') + '/main.jade');
+app.post('/addone', function(req, res){
+	client.connect(url, function(err, db){
+		db.collection("interviews").insertOne(req.body, function(err, res){
+			assert.equal(null, err);
+			assert.equal(1, res.insertedCount);
+			db.close();
+		});
+		res.sendStatus(200);
+	});
+});
+
+app.get('/getall', function(req, res){
+	var username = req.session.username;
+	var query = {username: username};
+	client.connect(url, function(err, db){
+		db.collection("interviews").find(query).toArray(function(err, data){
+			res.send(data);
+			db.close();
+		});
+	});
 });
 
 //-------------------------------- port ---------------------------------
