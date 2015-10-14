@@ -28,6 +28,12 @@ html(lang="en", ng-app="IntervieweeApp")
               input#date(ng-model="date", type="date", name="date", class="form-control", placeholder="Date", aria-describedby="sizing-addon1")
           button(ng-click="addOne()", class="btn btn-success btn-block") Add An Interview
 
+        div#search
+          div(class="input-group input-group")
+              span(class="input-group-addon", id="sizing-addon1") 
+                span(class="glyphicon glyphicon-search")
+              input#company(ng-model="reqtarget", type="text", class="form-control", placeholder="Search...", aria-describedby="sizing-addon1")
+
         div#tabs
           ul(class="nav nav-pills nav-stacked")
             li(ng-class="getCategoryClass(-1)")
@@ -46,24 +52,34 @@ html(lang="en", ng-app="IntervieweeApp")
               a(ng-click="selectCategory(3)", href="") Rejected
                 span(class="badge") {{rejected}}
       div(class="col-xs-8 col-sm-8 col-md-8 col-lg-8")
-        table(class="table table-hover")
-          tr(ng-repeat="interview in interviews | filter:categoryFilter") 
-            td {{interview.company}}  
-            td {{interview.position}}  
-            td {{interview.date | date: format: longDate}}  
-            td
-              div(class="dropdown") 
-                button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status  
-                  span(class="caret")
-                ul(class="dropdown-menu", role="menu")
-                  li
-                    a(ng-click="Interviewing(interview.key)", href="") Interviewing
-                  li
-                    a(ng-click="Offered(interview.key)", href="") offered
-                  li
-                    a(ng-click="Rejected(interview.key)", href="") rejected
-            td 
-              button(ng-click="Delete(interview.key)", class="btn btn-danger") Delete
+        div(class="panel panel-default")
+          div(class="panel-heading") Interview List
+
+          table(class="table table-hover")
+            thead
+              tr
+                th Company
+                th Position
+                th Date
+                th Status
+                th Remove
+            tr(ng-repeat="interview in interviews | filter:categoryFilter | Search:reqtarget") 
+              td {{interview.company}}  
+              td {{interview.position}}  
+              td {{interview.date | date: format: longDate}}  
+              td
+                div(class="dropdown") 
+                  button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status  
+                    span(class="caret")
+                  ul(class="dropdown-menu", role="menu")
+                    li
+                      a(ng-click="Interviewing(interview.key)", href="") Interviewing
+                    li
+                      a(ng-click="Offered(interview.key)", href="") offered
+                    li
+                      a(ng-click="Rejected(interview.key)", href="") rejected
+              td 
+                button(ng-click="Delete(interview.key)", class="btn btn-danger") Delete
     div(class="row", id="footer")   
       //- nav(class="navbar navbar-inverse navbar-fixed-bottom")
       //-   h4 Presented by 
