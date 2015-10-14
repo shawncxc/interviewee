@@ -7,12 +7,15 @@ angular.module("IntervieweeApp", [])
 		GetAll();
 		GetNumbers();
 
-		var selectedCategory = null;
+		var selectedCategory = -1;
 		$scope.selectCategory = function(num){
 			selectedCategory = num;
 		};
 		$scope.categoryFilter = function(interview){
-			return selectedCategory == null || interview.status == selectedCategory;
+			return selectedCategory == -1 || interview.status == selectedCategory;
+		};
+		$scope.getCategoryClass = function(num){
+			return selectedCategory == num ? "active" : "";
 		};
 
 		$scope.addOne = function(){

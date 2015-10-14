@@ -30,19 +30,19 @@ html(lang="en", ng-app="IntervieweeApp")
 
         div#tabs
           ul(class="nav nav-pills nav-stacked")
-            li(class="active")
-              a(ng-click="showAll()", href="") ALL
+            li(ng-class="getCategoryClass(-1)")
+              a(ng-click="selectCategory(-1)", href="") ALL
                 span(class="badge") {{all}}
-            li 
+            li(ng-class="getCategoryClass(0)") 
               a(ng-click="selectCategory(0)", href="") Waiting
                 span(class="badge") {{waiting}}
-            li
+            li(ng-class="getCategoryClass(1)") 
               a(ng-click="selectCategory(1)", href="") Interviewing
                 span(class="badge") {{interviewing}}
-            li
+            li(ng-class="getCategoryClass(2)") 
               a(ng-click="selectCategory(2)", href="") Offered
                 span(class="badge") {{offered}}
-            li
+            li(ng-class="getCategoryClass(3)") 
               a(ng-click="selectCategory(3)", href="") Rejected
                 span(class="badge") {{rejected}}
       div(class="col-xs-8 col-sm-8 col-md-8 col-lg-8")
