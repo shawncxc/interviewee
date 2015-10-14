@@ -30,31 +30,33 @@ html(lang="en", ng-app="IntervieweeApp")
 
         div#tabs
           ul(class="nav nav-pills nav-stacked")
-            li(class="active") 
-              a(href="#") Applied
+            li(class="active")
+              a(ng-click="showAll()", href="") ALL
+            li 
+              a(ng-click="selectCategory(0)", href="") Waiting
             li
-              a(href="#") Interviewing
+              a(ng-click="selectCategory(1)", href="") Interviewing
             li
-              a(href="#") Offered
+              a(ng-click="selectCategory(2)", href="") Offered
             li
-              a(href="#") Rejected
+              a(ng-click="selectCategory(3)", href="") Rejected
       div(class="col-xs-8 col-sm-8 col-md-8 col-lg-8")
         table(class="table table-hover")
-          tr(ng-repeat="interview in interviews") 
+          tr(ng-repeat="interview in interviews | filter:categoryFilter") 
             td {{interview.company}}  
             td {{interview.position}}  
-            td {{interview.date}}  
+            td {{interview.date | date: format: longDate}}  
             td
               div(class="dropdown") 
                 button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status  
                   span(class="caret")
                 ul(class="dropdown-menu", role="menu")
                   li
-                    a(ng-click="Interviewing(interview.key)", href="#") Interviewing
+                    a(ng-click="Interviewing(interview.key)", href="") Interviewing
                   li
-                    a(ng-click="Offered(interview.key)", href="#") offered
+                    a(ng-click="Offered(interview.key)", href="") offered
                   li
-                    a(ng-click="Rejected(interview.key)", href="#") rejected
+                    a(ng-click="Rejected(interview.key)", href="") rejected
             td 
               button(ng-click="Delete(interview.key)", class="btn btn-danger") Delete
     div(class="row", id="footer")   

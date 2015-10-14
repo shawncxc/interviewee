@@ -2,9 +2,17 @@ console.log("into the IntervieweeApp");
 
 angular.module("IntervieweeApp", [])
 	.constant("addOneUrl", "/addone")
-	.controller("MainCtrl", function($scope, $http, addOneUrl){
+	.controller("MainCtrl", function($scope, $http, $filter, addOneUrl){
 		$scope.username = username;
 		GetAll();
+
+		var selectedCategory = null;
+		$scope.selectCategory = function(num){
+			selectedCategory = num;
+		};
+		$scope.categoryFilter = function(interview){
+			return selectedCategory == null || interview.status == selectedCategory;
+		};
 
 		$scope.addOne = function(){
 			var addOneData = {};
@@ -68,6 +76,11 @@ angular.module("IntervieweeApp", [])
 				.error(function(){
 					console.log("Rejected one fail");
 				});
+		};
+
+		$scope.showAll = function(){
+			selectedCategory = null;
+			GetAll();
 		};
 
 		function GetAll(){
