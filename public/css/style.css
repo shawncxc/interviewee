@@ -7,6 +7,10 @@ html, body{
 	width: 100%;
 }
 
+#userlog{
+	color: white;
+}
+
 h3{
 	color: white;
 	margin-left: 10%;
