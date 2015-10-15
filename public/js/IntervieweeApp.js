@@ -3,6 +3,7 @@ console.log("into the IntervieweeApp");
 angular.module("IntervieweeApp", ["CustomFilter"])
 	.controller("MainCtrl", function($scope, $http, $filter){
 		$scope.username = username;
+		$scope.usericon = usericon;
 		GetAll();
 		GetNumbers();
 

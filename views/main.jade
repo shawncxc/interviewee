@@ -11,6 +11,11 @@ html(lang="en", ng-app="IntervieweeApp")
         h2 Welcome, #{username}
         script.
           var username = !{JSON.stringify(username)};
+          var usericon = !{JSON.stringify(usericon)};
+          console.log(usericon);
+
+        div#userIcon
+          canvas(width="250%", height="250%", data-jdenticon-hash=usericon)
         div#infoform
           form#info(action="/addOne", method="POST")
             div(class="input-group input-group")
@@ -87,12 +92,11 @@ html(lang="en", ng-app="IntervieweeApp")
               td {{interview.company}}  
               td {{interview.position}}  
               td {{interview.date | date: format: longDate}}  
-              td
+              td {{interview.statusStr}}
                   //- div(class="progress") 
                     //- ng-class="getStatusColor(interview.status)", 
                     //- div(aria-valuenow="100", aria-valuemin="0", aria-valuemax="100", style="width: 100%") 
-                  {{interview.statusStr}}
-  
+
               td  
                 div(class="dropdown") 
                   button(class="btn btn-warning dropdown-toggle", data-toggle="dropdown") Change Status 

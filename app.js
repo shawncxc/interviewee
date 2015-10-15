@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var path = require('path');
+var md5 = require('js-md5');
 
 //-------------------------------- database ---------------------------------
 var mongodb = require('mongodb');
@@ -33,16 +34,22 @@ app.get('/', function(req, res){
 	res.render(app.get('views') + '/login.jade');
 });
 
-app.post('/signup', function(req, res){
-	client.connect(url, function(err, db){
-		db.collection('users').insertOne(req.body, function(err, res){
-			assert.equal(null, err);
-			assert.equal(1, res.insertedCount);
-			req.session.username = req.body.username;
-			db.close();
-			res.render(app.get('views') + '/main.jade', {username: req.session.username});
+app.post('/signup', 
+	function(req, res, next){
+		client.connect(url, function(err, db){
+			db.collection('users').insertOne(req.body, function(err, res){
+				assert.equal(null, err);
+				assert.equal(1, res.insertedCount);
+				req.session.username = req.body.username;
+				req.session.usericon = md5(req.session.username);
+				db.close();
+				next();
+			});
 		});
-	});
+	}, 
+	function(req, res){
+		res.render(app.get('views') + '/main.jade', 
+			{username: req.session.username, usericon: req.session.usericon});
 });
 
 app.post('/main', function(req, res){
@@ -50,8 +57,10 @@ app.post('/main', function(req, res){
 		db.collection("users").find(req.body).toArray(function(err, data){
 			if(data.length === 1){
 				req.session.username = data[0].username;
+				req.session.usericon = md5(req.session.username);
 				db.close();
-				res.render(app.get('views') + '/main.jade', {username: req.session.username});
+				res.render(app.get('views') + '/main.jade', 
+					{username: req.session.username, usericon: req.session.usericon});
 			}
 			else{
 				res.send("No such Username or Password");	
