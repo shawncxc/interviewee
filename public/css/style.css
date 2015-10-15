@@ -17,6 +17,12 @@ h3{
 	width: 100%;
 }
 
+#userIcon{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 #callModal{
 	display: inline-block;
 	float: right;

@@ -6,15 +6,22 @@ html(lang="en", ng-app="IntervieweeApp")
       nav(class="navbar navbar-inverse navbar-fixed-top")
         div(class="navbar-header") 
           h3 Interviewee
+        ul(class="nav navbar-nav navbar-right")
+          li(class="dropdown")
+            a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Dropdown 
+              span(class="caret")
+            ul(class="dropdown-menu")
+              li
+                a(href="/signout") Sign Out
+              
     div(class="row", id="body")
-      div(class="col-xs-3 col-sm-3 col-md-3 col-lg-3")
-        h2 Welcome, #{username}
+      div(class="col-xs-3 col-sm-3 col-md-3 col-lg-3") 
         script.
           var username = !{JSON.stringify(username)};
           var usericon = !{JSON.stringify(usericon)};
-          console.log(usericon);
 
         div#userIcon
+          h2 Welcome, #{username}
           canvas(width="250%", height="250%", data-jdenticon-hash=usericon)
         div#infoform
           form#info(action="/addOne", method="POST")

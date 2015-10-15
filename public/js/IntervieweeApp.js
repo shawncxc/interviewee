@@ -109,6 +109,11 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 			GetAll();
 		};
 
+/*		$scope.signOut = function(){
+			console.log("in");
+			$http.get('/signout');
+		};*/
+
 		function GetAll(){
 			$http.get('/getall').success(function(data){
 				$scope.interviews = data;

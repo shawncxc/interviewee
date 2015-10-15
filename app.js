@@ -50,7 +50,8 @@ app.post('/signup',
 	function(req, res){
 		res.render(app.get('views') + '/main.jade', 
 			{username: req.session.username, usericon: req.session.usericon});
-});
+	}
+);
 
 app.post('/main', function(req, res){
 	client.connect(url, function(err, db){
@@ -197,6 +198,11 @@ app.get('/getnumsrejected', function(req, res){
 			db.close();
 		});
 	});
+});
+
+app.get('/signout', function(req, res){
+	req.session.destroy();
+	res.render(app.get('views') + '/login.jade');
 });
 
 //-------------------------------- port ---------------------------------
