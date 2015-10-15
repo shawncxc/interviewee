@@ -17,6 +17,11 @@ h3{
 	width: 100%;
 }
 
+#callModal{
+	display: inline-block;
+	float: right;
+}
+
 #signupform{
 	width: 70%;
 }

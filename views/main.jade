@@ -26,43 +26,49 @@ html(lang="en", ng-app="IntervieweeApp")
                 span(class="glyphicon glyphicon-calendar")
               input#date(ng-model="date", type="date", name="date", class="form-control", placeholder="Date", aria-describedby="sizing-addon1")
           button(ng-click="addOne()", class="btn btn-success btn-block") Add An Interview
-
+        br
+        br
         div#tabs
           ul(class="nav nav-pills nav-stacked")
             li(ng-class="getCategoryClass(-1)")
-              a(ng-click="selectCategory(-1)", href="") ALL
+              a(ng-click="selectCategory(-1)", href="") 
+                b ALL
                 span(class="badge") {{all}}
             li(ng-class="getCategoryClass(0)") 
-              a(ng-click="selectCategory(0)", href="") Waiting
+              a(ng-click="selectCategory(0)", href="") 
+                b Waiting
                 span(class="badge") {{waiting}}
             li(ng-class="getCategoryClass(1)") 
-              a(ng-click="selectCategory(1)", href="") Interviewing
+              a(ng-click="selectCategory(1)", href="") 
+                b Interviewing
                 span(class="badge") {{interviewing}}
             li(ng-class="getCategoryClass(2)") 
-              a(ng-click="selectCategory(2)", href="") Offered
+              a(ng-click="selectCategory(2)", href="") 
+                b Offered
                 span(class="badge") {{offered}}
             li(ng-class="getCategoryClass(3)") 
-              a(ng-click="selectCategory(3)", href="") Rejected
+              a(ng-click="selectCategory(3)", href="") 
+                b Rejected
                 span(class="badge") {{rejected}}
       div(class="col-xs-9 col-sm-9 col-md-9 col-lg-9")
         div(class="panel panel-default")
           div(class="panel-heading")
-            h1 Interview List
-          button(class="btn btn-success")
+            h1 Interview List 
 
           div(class="panel-body")
             h2 Brief Summary
             div#briefSummary(class="progress")
-              div(class="progress-bar progress-bar-warning", role="progressbar", ng-style="{'width': waitingPercent+'%'}")
+              div(class="progress-bar progress-bar-warning progress-bar-striped active", role="progressbar", ng-style="{'width': waitingPercent+'%'}")
                 | Waiting {{waitingPercent}}%
-              div(class="progress-bar progress-bar-info", role="progressbar", ng-style="{'width': interviewingPercent+'%'}")
+              div(class="progress-bar progress-bar-info progress-bar-striped active", role="progressbar", ng-style="{'width': interviewingPercent+'%'}")
                 | Interviewing {{interviewingPercent}}%
-              div(class="progress-bar progress-bar-danger", role="progressbar", ng-style="{'width': rejectedPercent+'%'}")
+              div(class="progress-bar progress-bar-danger progress-bar-striped active", role="progressbar", ng-style="{'width': rejectedPercent+'%'}")
                 | Rejected {{rejectedPercent}}%
-              div(class="progress-bar progress-bar-success", role="progressbar", ng-style="{'width': offeredPercent+'%'}")
+              div(class="progress-bar progress-bar-success progress-bar-striped active", role="progressbar", ng-style="{'width': offeredPercent+'%'}")
                 | Offered {{offeredPercent}}%
 
             div#search
+              //- button#callModal(class="btn btn-success btn-lg") Add Interview
               div(class="input-group input-group")
                   span(class="input-group-addon", id="sizing-addon1") 
                     span(class="glyphicon glyphicon-search")
