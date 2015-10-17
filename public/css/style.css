@@ -1,5 +1,6 @@
 html, body{
 	height: 100%;
+	background-color: #56A0D3;
 }
 
 @font-face{ 
@@ -22,10 +23,15 @@ html, body{
 	margin-right: 30px;
 }
 
+#headup{
+	font-family: 'MyWebFont';
+	text-align: center;
+}
+
 #loginform, #signupform{
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 30%;
+	margin-top: 20%;
 }
 
 #userlog{
