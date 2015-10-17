@@ -5,7 +5,7 @@ html(lang="en", ng-app="IntervieweeApp")
     div(class="row", id="header")
       nav(class="navbar navbar-inverse navbar-fixed-top")
         div(class="navbar-header") 
-          h3 Interviewee
+          h1 Interviewee
         ul(class="nav navbar-nav navbar-right")
           li(class="dropdown")
             a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") 
@@ -68,10 +68,10 @@ html(lang="en", ng-app="IntervieweeApp")
       div(class="col-xs-9 col-sm-9 col-md-9 col-lg-9")
         div(class="panel panel-default")
           div(class="panel-heading")
-            h1 Interview List 
+            h2 Interview List 
 
           div(class="panel-body")
-            h2 Brief Summary
+            h3 Brief Summary
             div#briefSummary(class="progress")
               div(class="progress-bar progress-bar-warning progress-bar-striped active", role="progressbar", ng-style="{'width': waitingPercent+'%'}")
                 | Waiting {{waitingPercent}}%
