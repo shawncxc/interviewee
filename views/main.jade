@@ -3,7 +3,7 @@ html(lang="en", ng-app="IntervieweeApp")
     include ./layout
   body(class="container-fluid", ng-controller="MainCtrl")
     div(class="row", id="header")
-      nav(class="navbar navbar-inverse navbar-fixed-top")
+      nav(class="navbar navbar-custom navbar-fixed-top")
         div(class="navbar-header") 
           h1 Interviewee
         ul(class="nav navbar-nav navbar-right")
@@ -15,8 +15,7 @@ html(lang="en", ng-app="IntervieweeApp")
                 span(class="caret") 
             ul(class="dropdown-menu")
               li
-                a(href="/signout") Sign Out
-              
+                a(href="/signout") Sign Out          
     div(class="row", id="body")
       div(class="col-xs-3 col-sm-3 col-md-3 col-lg-3") 
         script.
