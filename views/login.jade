@@ -8,8 +8,8 @@ html(lang="en", ng-app="IntervieweeApp")
         div(class="navbar-header") 
           h1 Interviewee
         div(class="navbar-right")
-          button#loginBtn(class="btn btn-link") Login
-          button#signupBtn(class="btn btn-default") Sign Up
+          button#loginBtn(class="btn btn-default raised") Login  
+          button#signupBtn(class="btn btn-success raised") Sign Up
     div(class="row", id="body")
       div(class="col-xs-4 col-sm-4 col-md-4 col-lg-4")
       div(class="col-xs-4 col-sm-4 col-md-4 col-lg-4")
@@ -17,8 +17,11 @@ html(lang="en", ng-app="IntervieweeApp")
           p When did I apply for this job...?
           p How many jobs have I applied...?
           p How many interviews do I have now...?
+          p What is the 
+            b(style="color: red;") feedback rate 
+            | of this company...?
           h2 That is why interviewees need an 
-          h1 Interviewee!!!
+          h1(style="color: red;") Interviewee!!!
         div#formbg
           div#signupform
             form#signup(action="/signup", method="POST")
@@ -30,7 +33,7 @@ html(lang="en", ng-app="IntervieweeApp")
                 span(class="input-group-addon", id="sizing-addon1") 
                   span(class="glyphicon glyphicon-qrcode")
                 input#password(type="password", name="password", class="form-control", placeholder="Password", aria-describedby="sizing-addon1")
-              input(type="submit", value="Sign Up", class="btn btn-success btn-block")
+              input(type="submit", value="Sign Up", class="btn btn-success btn-block raised")
 
           div#loginform
             form#login(action="/main", method="POST")
@@ -42,7 +45,7 @@ html(lang="en", ng-app="IntervieweeApp")
                 span(class="input-group-addon", id="sizing-addon1") 
                   span(class="glyphicon glyphicon-qrcode")
                 input#password(type="password", name="password", class="form-control", placeholder="Password", aria-describedby="sizing-addon1")
-              input(type="submit", value="Login", class="btn btn-default btn-block")
+              input(type="submit", value="Login", class="btn btn-default btn-block raised")
       div(class="col-xs-4 col-sm-4 col-md-4 col-lg-4")
     div(class="row", id="footer")   
       //- nav(class="navbar navbar-inverse navbar-fixed-bottom")
