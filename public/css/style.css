@@ -1,6 +1,7 @@
 html, body{
 	height: 100%;
-/*	background-image: url("../bgpic.gif");*/
+	background-image: url('bgpic.gif');
+	background-size: cover;
 }
 
 @font-face{ 
@@ -92,6 +93,7 @@ html, body{
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	color: white;
 }
 
 #loginform, #signupform{
