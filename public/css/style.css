@@ -1,7 +1,5 @@
 html, body{
 	height: 100%;
-	background-image: url('bgpic.gif');
-	background-size: cover;
 }
 
 @font-face{ 
