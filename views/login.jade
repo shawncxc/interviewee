@@ -6,7 +6,8 @@ html(lang="en", ng-app="IntervieweeApp")
     div(class="row", id="header")
       nav(class="navbar navbar-custom navbar-fixed-top")
         div(class="navbar-header") 
-          h1 Interviewee
+          h1 
+            b Interviewee
         div(class="navbar-right")
           button#loginBtn(class="btn btn-default raised") Login  
           button#signupBtn(class="btn btn-success raised") Sign Up
@@ -14,19 +15,33 @@ html(lang="en", ng-app="IntervieweeApp")
       div(class="col-xs-4 col-sm-4 col-md-4 col-lg-4")
       div(class="col-xs-4 col-sm-4 col-md-4 col-lg-4")
         div#headup
-          p 
-            b When did I apply for this job...?
-          p 
-            b How many jobs have I applied...?
-          p 
-            b How many interviews do I have now...?
-          p What is the 
-            b(style="color: red;") feedback rate 
-            | of this company...?
-          h2 
-            b That is why interviewees need an 
-          h1(style="color: red;") 
-            b Interviewee!!!
+          p
+            span(class="glyphicon glyphicon-console")
+            | Record. 
+            span(class="glyphicon glyphicon-ok", style="color: #76FF03;")
+          p
+            span(class="glyphicon glyphicon-console")
+            | Manage.
+            span(class="glyphicon glyphicon-ok", style="color: #76FF03;")
+          p
+            span(class="glyphicon glyphicon-console")
+            | Feedback.
+            span(class="glyphicon glyphicon-ok", style="color: #76FF03;")
+          p(style="text-align: center; color: #FF3D00; text-decoration: underline;") Your Interviews
+        //- div#headup
+        //-   h2 
+        //-     b When did I apply for this job...?
+        //-   h2 
+        //-     b How many jobs have I applied...?
+        //-   h2 
+        //-     b How many interviews do I have now...?
+        //-   h2 What is the 
+        //-     b(style="color: red;") feedback rate 
+        //-     | of this company...?
+        //-   h2 
+        //-     b That is why interviewees need an 
+        //-   h1(style="color: red;") 
+        //-     b Interviewee!!!
         div#formbg
           div#signupform
             form#signup(action="/signup", method="POST")
