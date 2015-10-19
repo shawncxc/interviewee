@@ -14,7 +14,7 @@ var url = 'mongodb://xuchang:xuchangchen@ec2-52-25-241-132.us-west-2.compute.ama
 
 //-------------------------------- server setting ---------------------------------
 var app = express();
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
