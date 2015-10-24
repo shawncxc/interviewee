@@ -1,4 +1,5 @@
-$(function(){
+$.noConflict();
+jQuery(function($){
 	$('#signupform').hide();
 
 	$('#signupBtn').click(function(){

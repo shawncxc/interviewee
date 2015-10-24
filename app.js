@@ -10,7 +10,8 @@ var md5 = require('js-md5');
 var mongodb = require('mongodb');
 var assert = require('assert');
 var client = mongodb.MongoClient;
-var url = 'mongodb://xuchang:xuchangchen@ec2-52-27-235-184.us-west-2.compute.amazonaws.com:27017/interviewee'
+var url = 'mongodb://xuchang:xuchangchen@ec2-52-27-235-184.us-west-2.compute.amazonaws.com:27017/interviewee' //production
+//var url = 'mongodb://localhost:27017/interviewee'; //test
 
 //-------------------------------- server setting ---------------------------------
 var app = express();
@@ -35,6 +36,18 @@ app.get('/', function(req, res){
 });
 
 app.post('/signup', 
+	function(req, res, next){
+		client.connect(url, function(err, db){
+			db.collection('users').find(req.body).toArray(function(err, data){
+				if(data.length >= 1){
+					res.send("Username already used, please back and try another one");
+				}
+				else{
+					next();
+				}
+			});
+		});
+	},
 	function(req, res, next){
 		client.connect(url, function(err, db){
 			db.collection('users').insertOne(req.body, function(err, res){
@@ -65,6 +78,7 @@ app.post('/main', function(req, res){
 			}
 			else{
 				res.send("No such Username or Password");	
+				//res.sendStatus(404);
 			}
 		});
 	});

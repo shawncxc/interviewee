@@ -1,7 +1,21 @@
 console.log("into the IntervieweeApp");
 
 angular.module("IntervieweeApp", ["CustomFilter"])
+	.controller("FormCtrl", function($scope, $http){
+		console.log("into the FormCtrl");
+		/*$scope.loginCheck = function(){
+			var loginData = {};
+			loginData.username = $scope.Lusername;
+			loginData.password = $scope.Lpassword;
+			$http.post('/main', loginData)
+				.error(function(){
+					alert("Your username or password is not correct");
+				});
+		};*/
+	})
 	.controller("MainCtrl", function($scope, $http, $filter){
+		console.log("into the MainCtrl");
+
 		$scope.username = username;
 		$scope.usericon = usericon;
 		GetAll();

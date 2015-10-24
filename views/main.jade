@@ -27,20 +27,27 @@ html(lang="en", ng-app="IntervieweeApp")
           h2 Welcome, #{username}
           canvas(width="250%", height="250%", data-jdenticon-hash=usericon)
         div#infoform
-          form#info(action="/addOne", method="POST")
+          form#info(action="/addOne", method="POST", name="infoform" novalidate)
             div(class="input-group input-group")
               span(class="input-group-addon", id="sizing-addon1") 
                 span(class="glyphicon glyphicon-home")
-              input#company(ng-model="company", type="text", name="company", class="form-control", placeholder="Company", aria-describedby="sizing-addon1")
+              input#company(ng-model="company", type="text", name="company", class="form-control", placeholder="Company", aria-describedby="sizing-addon1" required)
+            span(style="color: red;", ng-show="infoform.company.$dirty && infoform.company.$invalid") 
+              span(ng-show="infoform.company.$error.required") Please enter the company name
             div(class="input-group input-group")
               span(class="input-group-addon", id="sizing-addon1") 
                 span(class="glyphicon glyphicon-map-marker")
-              input#position(ng-model="position", type="text", name="position", class="form-control", placeholder="Position", aria-describedby="sizing-addon1")
+              input#position(ng-model="position", type="text", name="position", class="form-control", placeholder="Position", aria-describedby="sizing-addon1" required)
+            span(style="color: red;", ng-show="infoform.position.$dirty && infoform.position.$invalid")
+              span(ng-show="infoform.position.$error.required") Please enter the position info
             div(class="input-group input-group")
               span(class="input-group-addon", id="sizing-addon1") 
                 span(class="glyphicon glyphicon-calendar")
-              input#date(ng-model="date", type="date", name="date", class="form-control", placeholder="Date", aria-describedby="sizing-addon1")
-          button(ng-click="addOne()", class="btn btn-success btn-block") Add An Interview
+              input#date(ng-model="date", type="date", name="date", class="form-control", placeholder="Date", aria-describedby="sizing-addon1" required)
+            span(style="color: red;", ng-show="infoform.date.$dirty && infoform.date.$invalid")
+              span(ng-show="infoform.date.$error.required") Please enter the date
+          button(ng-click="addOne()", class="btn btn-success btn-block", ng-disabled="infoform.company.$error.required || infoform.position.$error.required || infoform.date.$error.required") 
+            | Add An Interview
         br
         br
         div#tabs

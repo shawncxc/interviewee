@@ -2,7 +2,7 @@ html(lang="en", ng-app="IntervieweeApp")
   head
     include ./layout
     script(src="LoginInteractivity.js")
-  body(class="container-fluid" style="background-image: url('bgpic.gif'); background-size: cover;")
+  body(class="container-fluid", style="background-image: url('bgpic.gif'); background-size: cover;", ng-controller="FormCtrl")
     div(class="row", id="header")
       nav(class="navbar navbar-custom navbar-fixed-top")
         div(class="navbar-header") 
@@ -28,44 +28,40 @@ html(lang="en", ng-app="IntervieweeApp")
             | Feedback.
             span(class="glyphicon glyphicon-ok", style="color: #76FF03;")
           p(style="text-align: center; color: #FF3D00; text-decoration: underline;") Your Interviews
-        //- div#headup
-        //-   h2 
-        //-     b When did I apply for this job...?
-        //-   h2 
-        //-     b How many jobs have I applied...?
-        //-   h2 
-        //-     b How many interviews do I have now...?
-        //-   h2 What is the 
-        //-     b(style="color: red;") feedback rate 
-        //-     | of this company...?
-        //-   h2 
-        //-     b That is why interviewees need an 
-        //-   h1(style="color: red;") 
-        //-     b Interviewee!!!
+
         div#formbg
           div#signupform
-            form#signup(action="/signup", method="POST")
+            form#signup(action="/signup", method="POST", name="signupform" novalidate)
               div(class="input-group input-group")
                 span(class="input-group-addon", id="sizing-addon1") 
                   span(class="glyphicon glyphicon-user")
-                input#username(type="text", name="username", class="form-control", placeholder="Username", aria-describedby="sizing-addon1")
+                input#username(type="text", name="username", class="form-control", placeholder="Username", aria-describedby="sizing-addon1", ng-model="Susername" required)
+              span(style="color:red" ng-show="signupform.username.$dirty && signupform.username.$invalid")
+                span(ng-show="signupform.username.$error.required") Username is required.
               div(class="input-group input-group")
                 span(class="input-group-addon", id="sizing-addon1") 
                   span(class="glyphicon glyphicon-qrcode")
-                input#password(type="password", name="password", class="form-control", placeholder="Password", aria-describedby="sizing-addon1")
-              input(type="submit", value="Sign Up", class="btn btn-success btn-block raised")
+                input#password(type="password", name="password", class="form-control", placeholder="Password", aria-describedby="sizing-addon1", ng-model="Spassword" required)
+              span(style="color:red" ng-show="signupform.password.$dirty && signupform.password.$invalid")
+                span(ng-show="signupform.password.$error.required") Password is required.
+              input(type="submit", value="Sign Up", class="btn btn-success btn-block raised", ng-disabled="signupform.username.$error.required || signupform.password.$error.required")
 
           div#loginform
-            form#login(action="/main", method="POST")
+            form#login(action="/main", method="POST", name="loginform" novalidate)
               div(class="input-group input-group")
                 span(class="input-group-addon", id="sizing-addon1") 
                   span(class="glyphicon glyphicon-user")
-                input#username(type="text", name="username", class="form-control", placeholder="Username", aria-describedby="sizing-addon1")
+                input#username(type="text", name="username", class="form-control", placeholder="Username", aria-describedby="sizing-addon1", ng-model="Lusername" required)
+                //- p {{username}}
+              span(style="color:red" ng-show="loginform.username.$dirty && loginform.username.$invalid")
+                span(ng-show="loginform.username.$error.required") Username is required.
               div(class="input-group input-group")
                 span(class="input-group-addon", id="sizing-addon1") 
                   span(class="glyphicon glyphicon-qrcode")
-                input#password(type="password", name="password", class="form-control", placeholder="Password", aria-describedby="sizing-addon1")
-              input(type="submit", value="Login", class="btn btn-default btn-block raised")
+                input#password(type="password", name="password", class="form-control", placeholder="Password", aria-describedby="sizing-addon1", ng-model="Lpassword" required)
+              span(style="color:red" ng-show="loginform.password.$dirty && loginform.password.$invalid")
+                span(ng-show="loginform.password.$error.required") Password is required.
+              input(type="submit", value="Login", class="btn btn-default btn-block raised", ng-disabled="loginform.username.$error.required || loginform.password.$error.required")
       div(class="col-xs-4 col-sm-4 col-md-4 col-lg-4")
     div(class="row", id="footer")   
       //- nav(class="navbar navbar-inverse navbar-fixed-bottom")
