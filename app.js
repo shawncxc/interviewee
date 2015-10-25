@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var path = require('path');
 var md5 = require('js-md5');
+var logger = require('morgan'); //logger
 
 //-------------------------------- database ---------------------------------
 var mongodb = require('mongodb');
@@ -29,6 +30,7 @@ app.use(session({secret: 'secret',
 				));
 app.use(express.static(path.join(__dirname, '/public/js')));
 app.use(express.static(path.join(__dirname, '/public/css')));
+app.use(logger('combined'));
 
 //-------------------------------- routes ---------------------------------
 app.get('/', function(req, res){
