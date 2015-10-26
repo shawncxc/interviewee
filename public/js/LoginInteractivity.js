@@ -15,7 +15,15 @@ jQuery(function($){
 	$('#linkedinIcon').hide();
 
 	$('#developerBtn').on('click', function(){
-		$(this).empty();
-		$(this).append("<a href='https://www.linkedin.com/in/xuchangchen'><b>Check Him On</b>      <img id='linkedinIcon' src='linkedinIcon.png'>");
+		if($(this).hasClass("open")){
+			$(this).removeClass("open");
+			$(this).empty();
+			$(this).text("Developer Info");
+		}
+		else{
+			$(this).addClass("open");
+			$(this).empty();
+			$(this).append("<a href='https://www.linkedin.com/in/xuchangchen'><b>Check Him On</b>      <img id='linkedinIcon' src='linkedinIcon.png'>");
+		}
 	});
 })
