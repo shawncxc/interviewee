@@ -37,13 +37,17 @@ html, body{
 
 /*---------------------------------------navbar-----------------------------------------*/
 
-#loginBtn{
+#developerBtn, #loginBtn{
 	margin-top: 20px;
 	margin-right: 10px;
 }
 #signupBtn{
 	margin-top: 20px;
 	margin-right: 30px;
+}
+#linkedinIcon{
+	width: 21px;
+	height: 21px;
 }
 
 /*------------------------------------raised btn-----------------------------------------*/
