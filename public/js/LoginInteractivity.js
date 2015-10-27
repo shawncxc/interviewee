@@ -27,6 +27,12 @@ jQuery(function($){
 		}
 	});*/
 	
+	//check browser size
+	var window_width = $(window).width();
 	
+	if(window_width <= 500){
+		$('#formbg').before("<h2 id='mobileHeadup'>Manage Your Interviews</h2>");
+		$('#headup').css("display","none");
+	}
 
 })

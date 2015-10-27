@@ -56,13 +56,18 @@ nav > div > h1{
 	float: right;
 }
 
-#headup{
-	display: none;
+#mobileHeadup{
+	margin-top: 120px;
+	color: white;
+	font-family: 'lgFont';
+	text-align: center; 
+	color: #FF3D00;
 }
 
 #formbg{
-	margin-top: 250px;
+	margin-top: 30px;
 }
+
 
 
 
