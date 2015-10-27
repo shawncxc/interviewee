@@ -16,6 +16,12 @@ angular.module("IntervieweeApp", ["CustomFilter"])
 	.controller("MainCtrl", function($scope, $http, $filter){
 		console.log("into the MainCtrl");
 
+		//if it is mobile
+		if(window.innerWidth <= 500){
+			$scope.hideStatus = true;
+			$scope.hideDate = true;
+		}
+
 		$scope.username = username;
 		$scope.usericon = usericon;
 		GetAll();
