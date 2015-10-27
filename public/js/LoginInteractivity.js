@@ -26,4 +26,7 @@ jQuery(function($){
 			$(this).append("<a href='https://www.linkedin.com/in/xuchangchen'><b>Check Him On</b>      <img id='linkedinIcon' src='linkedinIcon.png'>");
 		}
 	});*/
+	
+	
+
 })
