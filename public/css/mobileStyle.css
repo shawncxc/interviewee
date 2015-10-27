@@ -93,6 +93,13 @@ table{
 	padding: 2px;
 }
 
+.panel{
+	width: 400px;
+}
+
+.panel-default{
+	width: 400px;
+}
 
 
 
