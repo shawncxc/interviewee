@@ -8,11 +8,10 @@ html(lang="en", ng-app="IntervieweeApp")
         div(class="navbar-header") 
           h1 
             b Interviewee
+        a#developerInfo(href="https://www.linkedin.com/in/xuchangchen") 
+          b Developer&nbsp;    
+          img#linkedinIcon(src='linkedinIcon.png')
         div(class="navbar-right")
-          //- a(href="https://www.linkedin.com/in/xuchangchen") 
-          //-   h2
-          //-     b Developer
-          button#developerBtn(class="btn btn-default raised") Developer Info
           button#loginBtn(class="btn btn-default raised") Login  
           button#signupBtn(class="btn btn-success raised") Sign Up
     div(class="row", id="body")

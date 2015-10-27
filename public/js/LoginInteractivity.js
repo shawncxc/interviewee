@@ -12,9 +12,9 @@ jQuery(function($){
 		$('#signupform').hide();
 	});
 
-	$('#linkedinIcon').hide();
+	//$('#linkedinIcon').hide();
 
-	$('#developerBtn').on('click', function(){
+/*	$('#developerBtn').on('click', function(){
 		if($(this).hasClass("open")){
 			$(this).removeClass("open");
 			$(this).empty();
@@ -25,5 +25,5 @@ jQuery(function($){
 			$(this).empty();
 			$(this).append("<a href='https://www.linkedin.com/in/xuchangchen'><b>Check Him On</b>      <img id='linkedinIcon' src='linkedinIcon.png'>");
 		}
-	});
+	});*/
 })
